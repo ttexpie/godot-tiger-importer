@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlyxbton764ne"]
+
+[ext_resource type="Script" path="res://addons/tiger_importer/ui/json_import_view.gd" id="1_t3wmn"]
+
+[node name="JsonImportView" type="VBoxContainer"]
+script = ExtResource("1_t3wmn")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Tiger JSON Export File"
+
+[node name="ButtonHBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ImportButton" type="Button" parent="ButtonHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Import"
+
+[node name="ClearButton" type="Button" parent="ButtonHBox"]
+visible = false
+layout_mode = 2
+text = "Clear"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+ok_button_text = "Open"
+mode_overrides_title = false
+file_mode = 0
+filters = PackedStringArray("*.json ; JSON File")
+
+[node name="AlertDialog" type="AcceptDialog" parent="."]
+size = Vector2i(200, 100)
+
+[connection signal="pressed" from="ButtonHBox/ImportButton" to="." method="_on_import_button_pressed"]
+[connection signal="pressed" from="ButtonHBox/ClearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

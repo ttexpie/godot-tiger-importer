@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpa7si4xav775"]
+
+[ext_resource type="Script" path="res://addons/tiger_importer/ui/node_selection_view.gd" id="1_68l4m"]
+[ext_resource type="PackedScene" uid="uid://duxocutuul3vs" path="res://addons/tiger_importer/ui/select_node_dialog.tscn" id="2_olcgh"]
+
+[node name="NodeSelectionView" type="VBoxContainer"]
+script = ExtResource("1_68l4m")
+
+[node name="SpriteLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Sprite Node"
+
+[node name="SpriteButton" type="Button" parent="."]
+layout_mode = 2
+text = "Select Sprite Node"
+
+[node name="AnimPlayerLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Animation Player Node"
+
+[node name="AnimPlayerButton" type="Button" parent="."]
+layout_mode = 2
+text = "Select Animation Player Node"
+
+[node name="SelectNodeDialog" parent="." instance=ExtResource("2_olcgh")]
+visible = false
+
+[node name="AlertDialog" type="AcceptDialog" parent="."]
+size = Vector2i(200, 100)
+
+[connection signal="pressed" from="SpriteButton" to="." method="_on_sprite_button_pressed"]
+[connection signal="pressed" from="AnimPlayerButton" to="." method="_on_anim_player_button_pressed"]
+[connection signal="error_occurred" from="SelectNodeDialog" to="." method="_on_select_node_dialog_error_occurred"]
+[connection signal="node_selected" from="SelectNodeDialog" to="." method="_on_select_node_dialog_node_selected"]

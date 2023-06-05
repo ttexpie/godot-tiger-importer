@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://uc4v0escegnw"]
+
+[ext_resource type="Texture2D" uid="uid://dnpaopgahkpke" path="res://icon.svg" id="1_1o7ir"]
+[ext_resource type="PackedScene" uid="uid://dlyxbton764ne" path="res://addons/tiger_importer/ui/json_import_view.tscn" id="1_pu2oy"]
+[ext_resource type="Script" path="res://addons/tiger_importer/ui/import_ui.gd" id="1_qo50q"]
+[ext_resource type="PackedScene" uid="uid://pvct7apocts8" path="res://addons/tiger_importer/ui/spritesheet_import_view.tscn" id="3_1l11p"]
+[ext_resource type="PackedScene" uid="uid://dpa7si4xav775" path="res://addons/tiger_importer/ui/node_selection_view.tscn" id="4_t6arl"]
+
+[node name="ImportUI" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_qo50q")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 2
+split_offset = 500
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpritesheetImportView" parent="HSplitContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_1l11p")]
+layout_mode = 2
+
+[node name="JsonImportView" parent="HSplitContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_pu2oy")]
+layout_mode = 2
+
+[node name="NodeSelectionView" parent="HSplitContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_t6arl")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="HSplitContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GenerateButton" type="Button" parent="HSplitContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Generate Animations"
+
+[node name="SpritesheetDisplay" type="TextureRect" parent="HSplitContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_1o7ir")
+stretch_mode = 5
+
+[connection signal="spritesheet_cleared" from="HSplitContainer/ScrollContainer/VBoxContainer/SpritesheetImportView" to="." method="_on_spritesheet_import_view_spritesheet_cleared"]
+[connection signal="spritesheet_imported" from="HSplitContainer/ScrollContainer/VBoxContainer/SpritesheetImportView" to="." method="_on_spritesheet_import_view_spritesheet_imported"]
+[connection signal="data_cleared" from="HSplitContainer/ScrollContainer/VBoxContainer/JsonImportView" to="." method="_on_json_import_view_data_cleared"]
+[connection signal="data_imported" from="HSplitContainer/ScrollContainer/VBoxContainer/JsonImportView" to="." method="_on_json_import_view_data_imported"]
+[connection signal="anim_player_selected" from="HSplitContainer/ScrollContainer/VBoxContainer/NodeSelectionView" to="." method="_on_node_selection_view_anim_player_selected"]
+[connection signal="sprite_selected" from="HSplitContainer/ScrollContainer/VBoxContainer/NodeSelectionView" to="." method="_on_node_selection_view_sprite_selected"]
+[connection signal="pressed" from="HSplitContainer/ScrollContainer/VBoxContainer/GenerateButton" to="." method="_on_generate_button_pressed"]

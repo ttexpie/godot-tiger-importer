@@ -1,0 +1,41 @@
+{
+	"animations": [
+		{{ #each animations as |animation| }}
+		{
+			"name": "{{ animation.name }}",
+			"looping": {{ animation.is_looping }},
+			"sequences": [
+				{{ #each animation.sequences as |sequence| }}
+				{
+					"direction": "{{ sequence.direction }}",
+					"keyframes": [
+						{{ #each sequence.keyframes as |keyframe| }}
+						{
+							"x": {{ keyframe.x }},
+							"y": {{ keyframe.y }},
+							"atlasX": {{ keyframe.frame.x }},
+							"atlasY": {{ keyframe.frame.y }},
+							"width": {{ keyframe.frame.width }},
+							"height": {{ keyframe.frame.height }},
+							"duration": {{ keyframe.duration }},
+							"hitboxes": [
+								{{ #each keyframe.hitboxes as |hitbox| }}
+								{
+									"name": "{{ hitbox.name }}",
+									"x": {{ hitbox.x }},
+									"y": {{ hitbox.y }},
+									"width": {{ hitbox.width }},
+									"height":"{{ hitbox.height }}
+								}{{ #unless @last }}, {{ /unless }}
+								{{ /each }}
+							]
+						}{{ #unless @last }}, {{ /unless }}
+						{{ /each }}
+					]
+				}{{ #unless @last }}, {{ /unless }}
+				{{ /each }}
+			]
+		}{{ #unless @last }}, {{ /unless }}
+		{{ /each }}
+	]
+}

@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://duxocutuul3vs"]
+
+[ext_resource type="Script" path="res://addons/tiger_importer/ui/select_node_dialog.gd" id="1_ex5ve"]
+
+[node name="SelectNodeDialog" type="PopupPanel"]
+title = "Select a Node"
+size = Vector2i(300, 200)
+visible = true
+unresizable = false
+borderless = false
+min_size = Vector2i(300, 200)
+script = ExtResource("1_ex5ve")
+disabled_icon_modulate = Color(1, 1, 1, 0.247059)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+
+[node name="Body" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EditedSceneView" type="VBoxContainer" parent="MarginContainer/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/Body/EditedSceneView"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Current Edited Scene:"
+
+[node name="SceneTree" type="Tree" parent="MarginContainer/Body/EditedSceneView"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+select_mode = 1
+
+[node name="Footer" type="HBoxContainer" parent="MarginContainer/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConfirmButton" type="Button" parent="MarginContainer/Body/Footer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Select Node"
+
+[node name="CancelButton" type="Button" parent="MarginContainer/Body/Footer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Cancel"
+
+[connection signal="item_activated" from="MarginContainer/Body/EditedSceneView/SceneTree" to="." method="_on_scene_tree_item_activated"]
+[connection signal="pressed" from="MarginContainer/Body/Footer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Body/Footer/CancelButton" to="." method="_on_cancel_button_pressed"]

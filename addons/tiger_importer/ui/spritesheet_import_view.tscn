@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://pvct7apocts8"]
+
+[ext_resource type="Script" path="res://addons/tiger_importer/ui/spritesheet_import_view.gd" id="1_ui2wi"]
+
+[node name="SpritesheetImportView" type="VBoxContainer"]
+script = ExtResource("1_ui2wi")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Spritesheet Export File"
+
+[node name="ButtonHBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ImportButton" type="Button" parent="ButtonHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Import"
+
+[node name="ClearButton" type="Button" parent="ButtonHBox"]
+visible = false
+layout_mode = 2
+text = "Clear"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+ok_button_text = "Open"
+mode_overrides_title = false
+file_mode = 0
+filters = PackedStringArray("*.png ; PNG File")
+
+[node name="AlertDialog" type="AcceptDialog" parent="."]
+
+[connection signal="pressed" from="ButtonHBox/ImportButton" to="." method="_on_import_button_pressed"]
+[connection signal="pressed" from="ButtonHBox/ClearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
