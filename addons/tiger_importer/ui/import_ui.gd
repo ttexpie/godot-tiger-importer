@@ -27,7 +27,7 @@ func _on_spritesheet_import_view_spritesheet_imported(import_spritesheet: Textur
 
 func _on_spritesheet_import_view_spritesheet_cleared() -> void:
 	spritesheet = null
-	spritesheet_display.texture = preload("res://icon.svg")
+	spritesheet_display.texture = preload("res://addons/tiger_importer/godottiger.svg")
 
 
 func _on_json_import_view_data_imported(import_data: TigerJsonImport) -> void:

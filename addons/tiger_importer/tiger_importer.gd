@@ -2,6 +2,7 @@
 extends EditorPlugin
 
 const import_ui_scene := preload("res://addons/tiger_importer/ui/import_ui.tscn")
+const icon := preload("res://addons/tiger_importer/editor_icon.svg")
 
 var import_ui: Control
 
@@ -31,4 +32,4 @@ func _get_plugin_name() -> String:
 
 
 func _get_plugin_icon() -> Texture2D:
-	return get_editor_interface().get_base_control().get_theme_icon("Node", "EditorIcons")
+	return icon

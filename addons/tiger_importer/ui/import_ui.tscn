@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://uc4v0escegnw"]
 
-[ext_resource type="Texture2D" uid="uid://dnpaopgahkpke" path="res://icon.svg" id="1_1o7ir"]
 [ext_resource type="PackedScene" uid="uid://dlyxbton764ne" path="res://addons/tiger_importer/ui/json_import_view.tscn" id="1_pu2oy"]
 [ext_resource type="Script" path="res://addons/tiger_importer/ui/import_ui.gd" id="1_qo50q"]
 [ext_resource type="PackedScene" uid="uid://pvct7apocts8" path="res://addons/tiger_importer/ui/spritesheet_import_view.tscn" id="3_1l11p"]
 [ext_resource type="PackedScene" uid="uid://dpa7si4xav775" path="res://addons/tiger_importer/ui/node_selection_view.tscn" id="4_t6arl"]
+[ext_resource type="Texture2D" uid="uid://dfodi8sloo5qb" path="res://addons/tiger_importer/godottiger.svg" id="5_m27eq"]
 
 [node name="ImportUI" type="PanelContainer"]
 anchors_preset = 15
@@ -41,12 +41,13 @@ layout_mode = 2
 
 [node name="GenerateButton" type="Button" parent="HSplitContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "Generate Animations"
 
 [node name="SpritesheetDisplay" type="TextureRect" parent="HSplitContainer"]
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("1_1o7ir")
+texture = ExtResource("5_m27eq")
 stretch_mode = 5
 
 [connection signal="spritesheet_cleared" from="HSplitContainer/ScrollContainer/VBoxContainer/SpritesheetImportView" to="." method="_on_spritesheet_import_view_spritesheet_cleared"]
