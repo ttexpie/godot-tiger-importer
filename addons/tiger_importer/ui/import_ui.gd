@@ -3,7 +3,7 @@ extends PanelContainer
 
 @onready var hsplit_container: HSplitContainer = $HSplitContainer
 @onready var scroll_container: ScrollContainer = $HSplitContainer/ScrollContainer
-@onready var generate_button: Button = $HSplitContainer/ScrollContainer/VBoxContainer/GenerateButton
+@onready var generate_button: Button = %GenerateButton
 @onready var spritesheet_display: TextureRect = $HSplitContainer/SpritesheetDisplay
 
 var spritesheet: Texture2D

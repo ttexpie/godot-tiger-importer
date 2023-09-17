@@ -1,10 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://uc4v0escegnw"]
+[gd_scene load_steps=8 format=3 uid="uid://uc4v0escegnw"]
 
 [ext_resource type="PackedScene" uid="uid://dlyxbton764ne" path="res://addons/tiger_importer/ui/json_import_view.tscn" id="1_pu2oy"]
 [ext_resource type="Script" path="res://addons/tiger_importer/ui/import_ui.gd" id="1_qo50q"]
 [ext_resource type="PackedScene" uid="uid://pvct7apocts8" path="res://addons/tiger_importer/ui/spritesheet_import_view.tscn" id="3_1l11p"]
 [ext_resource type="PackedScene" uid="uid://dpa7si4xav775" path="res://addons/tiger_importer/ui/node_selection_view.tscn" id="4_t6arl"]
 [ext_resource type="Texture2D" uid="uid://dfodi8sloo5qb" path="res://addons/tiger_importer/godottiger.svg" id="5_m27eq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ea1s2"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6kriv"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+draw_center = false
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="ImportUI" type="PanelContainer"]
 anchors_preset = 15
@@ -14,6 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ea1s2")
 script = ExtResource("1_qo50q")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
@@ -22,6 +40,7 @@ split_offset = 500
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6kriv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/ScrollContainer"]
 layout_mode = 2
@@ -40,6 +59,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="GenerateButton" type="Button" parent="HSplitContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "Generate Animations"
@@ -48,6 +68,7 @@ text = "Generate Animations"
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("5_m27eq")
+expand_mode = 1
 stretch_mode = 5
 
 [connection signal="spritesheet_cleared" from="HSplitContainer/ScrollContainer/VBoxContainer/SpritesheetImportView" to="." method="_on_spritesheet_import_view_spritesheet_cleared"]
