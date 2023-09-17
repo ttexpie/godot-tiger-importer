@@ -60,7 +60,9 @@ static func generate_animations(tiger_data: TigerJsonImport, spritesheet: Textur
 			var time := 0.0
 			for keyframe in sequence.keyframes:
 				var region := Rect2(keyframe.atlas_x, keyframe.atlas_y, keyframe.width, keyframe.height)
+				var offset := Vector2((keyframe.width / 2) + keyframe.x, (keyframe.height / 2) + keyframe.y)
 				godot_anim.track_insert_key(tracks.region.idx, time, region)
+				godot_anim.track_insert_key(tracks.offset.idx, time, offset)
 				time += keyframe.duration
 			godot_anim.length = time
 			godot_anim.loop_mode = Animation.LOOP_LINEAR if animation.looping else Animation.LOOP_NONE
